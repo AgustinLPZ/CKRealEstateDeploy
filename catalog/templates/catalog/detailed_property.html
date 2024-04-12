@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CK Real Estate</title>
+    <link rel="stylesheet" href="{% static 'admin/css/styles.css' %}">
+</head>
+<body>
+
+<header class="main-header">
+    <h1>CK REAL ESTATE</h1>
+    <nav class="navigation">
+        <a href="{% url 'index' %}" class="nav-item">HOME</a>
+        <a href="{% url 'listings' %}" class="nav-item active">PROPERTIES</a>
+        <a href="{% url 'agent_profile' %}" class="nav-item">AGENT</a>
+        <a href="{% url 'discover' %}" class="nav-item">DISCOVER OMAHA</a>
+    </nav>
+</header>
+<body>
+    <h1>{{ listing.address }}</h1>
+    <p>City: {{ listing.city }}</p>
+    <p>State: {{ listing.state }}</p>
+    <p>Zip Code: {{ listing.zip_code }}</p>
+    <!-- Continue listing other fields as needed -->
+    <p>Price: {{ listing.price }}</p>
+    <p>Description: {{ listing.description }}</p>
+    <!-- Images if applicable -->
+    {% if listing.photo1 %}
+        <img src="{{ listing.photo1.url }}" alt="Photo 1">
+    {% endif %}
+</body>

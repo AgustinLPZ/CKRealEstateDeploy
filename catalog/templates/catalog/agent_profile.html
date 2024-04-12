@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CK Real Estate</title>
+    <link rel="stylesheet" href="{% static 'admin/css/styles.css' %}">
+</head>
+<body>
+
+<header class="main-header">
+    <h1>CK REAL ESTATE</h1>
+    <nav class="navigation">
+        <a href="{% url 'index' %}" class="nav-item">HOME</a>
+        <a href="{% url 'listings' %}" class="nav-item">PROPERTIES</a>
+        <a href="{% url 'agent_profile' %}" class="nav-item active">AGENT</a>
+        <a href="{% url 'discover' %}" class="nav-item">DISCOVER OMAHA</a>
+    </nav>
+</header>
+
+<main class="hero-section">
+    <div class="agent">
+
+        <h1>Agent Profile</h1>
+        <br>
+        <img src="{% static 'admin/images/img.png' %}">
+        <br>
+        <br>
+        <h2>Carlos Kosala</h2>
+        <br>
+        <p>Welcome to CK Real Estate, My journey began shortly after I graduated with a degree in Business Administration, a time when I took the pivotal step of becoming a licensed real estate agent. My early days in the field were marked by a series of successes and learning experiences at a well-regarded brokerage in the Omaha area. There, I honed my skills, built lasting relationships, and developed a deep understanding of the local real estate market.<p/>
+        <br>
+        <p>However, the desire to forge my own path was strong. With ambition as my guide, I pursued and obtained my Broker’s License, a milestone that paved the way for the establishment of CK Real Estate. As the owner and operator of this boutique firm, I am committed to providing personalized, high-quality service to each and every client.<p>
+        <br>
+        <div class="form-container">
+
+            <h2>Contact Me</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ contact_form.as_p }}
+                <button type="submit">Send Message</button>
+            </form>
+
+        </div>
+        <br>
+
+        <style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr; /* One column layout */
+        grid-gap: 10px; /* Space between rows */
+    }
+    .grid-container h4, .grid-container p {
+        margin: 0; /* Removes default margin */
+    }
+</style>
+
+    <div class="grid-container">
+        <h4>Office Address:</h4>
+        <p>1234 Office St, Omaha, NE</p>
+        <h4>Phone:</h4>
+        <p>(402) 123-1234</p>
+        <h4>Website:</h4>
+        <p>www.CKRealEstate.com</p>
+        <h4>Email:</h4>
+        <p>carloskosala@ck.com</p>
+    </div>
+    </div>
+</main>
+
+

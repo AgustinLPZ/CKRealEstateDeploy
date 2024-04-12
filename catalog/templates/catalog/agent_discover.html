@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CK Real Estate</title>
+    <link rel="stylesheet" href="{% static 'admin/css/styles.css' %}">
+</head>
+<body>
+
+<header class="main-header">
+    <h1>CK REAL ESTATE</h1>
+    <nav class="navigation">
+        <a href="{% url 'agent_home' %}" class="nav-item">HOME</a>
+        <a href="{% url 'agent_listings' %}" class="nav-item">PROPERTIES</a>
+        <a href="{% url 'add_listing' %}" class="nav-item">ADD LISTING</a>
+        <a href="{% url 'agent_agent_profile' %}" class="nav-item">AGENT</a>
+        <a href="{% url 'agent_discover' %}" class="nav-item active">DISCOVER OMAHA</a>
+        <a href="{% url 'report' %}" class="nav-item">REPORT</a>
+    </nav>
+</header>
+
+<footer class="footer">
+    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" style="background: none; border: none; padding: 0; margin: 0; font: inherit; color: #FF0000; cursor: pointer;">
+            LOG OUT
+        </button>
+    </form>
+</footer>

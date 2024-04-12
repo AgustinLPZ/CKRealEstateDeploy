@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CK Real Estate</title>
+    <link rel="stylesheet" href="{% static 'admin/css/styles.css' %}">
+</head>
+<body>
+
+<header class="main-header">
+    <h1>CK REAL ESTATE</h1>
+    <nav class="navigation">
+        <a href="{% url 'index' %}" class="nav-item">HOME</a>
+        <a href="{% url 'listings' %}" class="nav-item active">PROPERTIES</a>
+        <a href="{% url 'agent_profile' %}" class="nav-item">AGENT</a>
+        <a href="{% url 'discover' %}" class="nav-item">DISCOVER OMAHA</a>
+    </nav>
+</header>
+
+<main class="hero-section">
+
+    <div class="featured-property">
+    <h1>All Properties</h1>
+    <ul>
+        {% for listing in listings %}
+            <li>
+                <img src="{{ listing.photo1.url }}" alt="Photo of {{ listing.address }}" style="max-width: 100%;">
+                <h2>{{ listing.address }}</h2>
+                <p>{{ listing.city }}, {{ listing.state }} - {{ listing.zip_code }}</p>
+                <p>Price: ${{ listing.price }}</p>
+                <a href="{% url 'detailed_property' listing.pk %}">View details</a>
+            </li>
+        {% empty %}
+            <li>No listings available.</li>
+        {% endfor %}
+    </ul>
+</div>
+</main>
+</body>
+</html>

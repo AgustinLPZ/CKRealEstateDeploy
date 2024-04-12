@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CK Real Estate</title>
+    <link rel="stylesheet" href="{% static 'admin/css/styles.css' %}">
+</head>
+<body>
+
+<header class="main-header">
+    <h1>CK REAL ESTATE</h1>
+    <nav class="navigation">
+        <a href="{% url 'index' %}" class="nav-item active">HOME</a>
+        <a href="{% url 'listings' %}" class="nav-item">PROPERTIES</a>
+        <a href="{% url 'agent_profile' %}" class="nav-item">AGENT</a>
+        <a href="{% url 'discover' %}" class="nav-item">DISCOVER OMAHA</a>
+    </nav>
+</header>
+
+<main class="hero-section">
+    <div class="featured-property">
+
+        <h1>Featured Property</h1>
+
+        <div class="property-details">
+            <ul>
+                {% for listing in listings %}
+                    {% if listing.is_featured %}
+                        <li>
+                            <img src="{{ listing.photo1.url }}" alt="Photo of {{ listing.address }}" style="max-width: 100%;">
+                            <h2>{{ listing.address }}</h2>
+                            <p>{{ listing.city }}, {{ listing.state }} - {{ listing.zip_code }}</p>
+                            <p>Price: ${{ listing.price }}</p>
+                            <a href="{% url 'detailed_property' listing.pk %}">View details</a>
+                        </li>
+                    {% endif %}
+                {% empty %}
+                    <li>No listings available.</li>
+                {% endfor %}
+            </ul>
+
+
+
+        </div>
+    </div>
+    <div class="search-listings">
+        <h2>Search Listings</h2>
+        <form action="#">
+            <select name="neighborhood" id="neighborhood">
+                <option>Select Neighborhood</option>
+                <!-- Neighborhood options go here -->
+            </select>
+            <select name="home-type" id="home-type">
+                <option>Select Home Type</option>
+                <!-- Home type options go here -->
+            </select>
+            <select name="price-range" id="price-range">
+                <option>Select Price Range</option>
+                <!-- Price range options go here -->
+            </select>
+            <button type="submit" class="search-button">Search</button>
+        </form>
+    </div>
+
+</main>
+
+
+<footer class="footer">
+    <a href="{% url 'login' %}" class="agent-login">AGENT LOG IN</a>
+</footer>
+
+</body>
+</html>
+
+
+
